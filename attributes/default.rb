@@ -17,16 +17,11 @@
 # limitations under the License.
 #
 
-default["skype"]["dependencies"] = %w(
-  libpng12-0
-  xorg-x11-libs
-)
-
 default["skype"]["version"] = "4.2.0.11"
 
 case node["platform_family"]
 when "suse"
-  default["skype"]["package_provider"] = Chef::Provider::Package::Rpm
+  default["skype"]["package_provider"] = Chef::Provider::Package::Zypper
   default["skype"]["package_file"] = "skype-#{node["skype"]["version"]}-suse.i586.rpm"
   default["skype"]["package_url"] = "http://download.skype.com/linux/#{node["skype"]["package_file"]}"
 when "debian"

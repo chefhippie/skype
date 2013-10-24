@@ -17,12 +17,6 @@
 # limitations under the License.
 #
 
-node["skype"]["dependencies"].each do |name|
-  package name do
-    action :install
-  end
-end
-
 remote_file ::File.join(Chef::Config[:file_cache_path], node["skype"]["package_file"]) do
   source node["skype"]["package_url"]
   action :create_if_missing
