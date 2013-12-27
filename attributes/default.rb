@@ -18,11 +18,6 @@
 #
 
 default["skype"]["version"] = "4.2.0.11"
-default["skype"]["package_provider"] = value_for_platform_family(
-  "debian" => Chef::Provider::Package::Apt,
-  "ubuntu" => Chef::Provider::Package::Apt,
-  "suse" => Chef::Provider::Package::Zypper
-)
 default["skype"]["package_file"] = value_for_platform_family(
   "debian" => "skype-debian_#{node["skype"]["version"]}-1_i386.deb",
   "ubuntu" => "skype-debian_#{node["skype"]["version"]}-1_i386.deb",
