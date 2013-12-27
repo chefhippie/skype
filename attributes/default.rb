@@ -18,14 +18,14 @@
 #
 
 default["skype"]["version"] = "4.2.0.11"
-
-case node["platform_family"]
-when "suse"
-  default["skype"]["package_provider"] = Chef::Provider::Package::Zypper
-  default["skype"]["package_file"] = "skype-#{node["skype"]["version"]}-suse.i586.rpm"
-  default["skype"]["package_url"] = "http://download.skype.com/linux/#{node["skype"]["package_file"]}"
-when "debian"
-  default["skype"]["package_provider"] = Chef::Provider::Package::Apt
-  default["skype"]["package_file"] = "skype-debian_#{node["skype"]["version"]}-1_i386.deb"
-  default["skype"]["package_url"] = "http://download.skype.com/linux/#{node["skype"]["package_file"]}"
-end
+default["skype"]["package_provider"] = value_for_platform_family(
+  "debian" => Chef::Provider::Package::Apt,
+  "ubuntu" => Chef::Provider::Package::Apt,
+  "suse" => Chef::Provider::Package::Zypper
+)
+default["skype"]["package_file"] = value_for_platform_family(
+  "debian" => "skype-debian_#{node["skype"]["version"]}-1_i386.deb",
+  "ubuntu" => "skype-debian_#{node["skype"]["version"]}-1_i386.deb",
+  "suse" => "skype-#{node["skype"]["version"]}-suse.i586.rpm"
+)
+default["skype"]["package_url"] = "http://download.skype.com/linux/#{node["skype"]["package_file"]}"

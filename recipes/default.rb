@@ -19,6 +19,10 @@
 
 remote_file ::File.join(Chef::Config[:file_cache_path], node["skype"]["package_file"]) do
   source node["skype"]["package_url"]
+
+  owner "root"
+  group "root"
+  mode "0444"
   action :create_if_missing
 end
 

@@ -1,2 +1,2 @@
-vagrant Cookbook
-================
+skype Cookbook
+==============
