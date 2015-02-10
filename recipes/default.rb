@@ -27,7 +27,7 @@ remote_file ::File.join(Chef::Config[:file_cache_path], node["skype"]["package_f
 end
 
 case node["platform_family"]
-when "debian", "ubuntu"
+when "debian"
   dpkg_package ::File.join(Chef::Config[:file_cache_path], node["skype"]["package_file"]) do
     action :install
   end

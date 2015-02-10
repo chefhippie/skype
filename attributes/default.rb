@@ -18,9 +18,10 @@
 #
 
 default["skype"]["version"] = "4.3.0.37"
+
 default["skype"]["package_file"] = value_for_platform_family(
   "debian" => "skype-debian_#{node["skype"]["version"]}-1_i386.deb",
-  "ubuntu" => "skype-debian_#{node["skype"]["version"]}-1_i386.deb",
   "suse" => "skype-#{node["skype"]["version"]}-suse.i586.rpm"
 )
+
 default["skype"]["package_url"] = "http://download.skype.com/linux/#{node["skype"]["package_file"]}"
