@@ -32,7 +32,7 @@ when "debian"
     action :install
   end
 when "suse"
-  package ::File.join(Chef::Config[:file_cache_path], node["skype"]["package_file"]) do
+  rpm_package ::File.join(Chef::Config[:file_cache_path], node["skype"]["package_file"]) do
     action :install
   end
 end
